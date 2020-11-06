@@ -1,23 +1,34 @@
 package controller;
 
+import javax.swing.JOptionPane;
+
 import entity.Inscrito;
 
 public class InscritoController {
 	
-	public void cadastro() {
+	public Inscrito cadastro() {
 		ListaMetodos lista = new ListaMetodos();
 		
+		//Aqui inserir o JOptionPane
 		Inscrito novo = new Inscrito();
-		novo.setCpf("adicionar cpf");
-		novo.setCurriculo("adicionar curriculo");
-		novo.setEmail("Adicionar email");
-		novo.setNome("Adicionar nome");
-		novo.setOpcCurso("Adicionar curso");
-		novo.setRg("Adicionar Rg");
-		novo.setTelefone("Adicionar telefone");
+		String cpf = JOptionPane.showInputDialog("Adicionar CPF: ");
+		novo.setCpf("Adicionar CPF: ");
+		String curriculo = JOptionPane.showInputDialog("Adicionar Currículo: ");
+		novo.setCurriculo(curriculo);
+		String email = JOptionPane.showInputDialog("Adicionar E-mail: ");
+		novo.setEmail(email);
+		String nome = JOptionPane.showInputDialog("Adicionar Nome: ");
+		novo.setNome(nome);
+		String curso = JOptionPane.showInputDialog("Adicionar Curso: ");
+		novo.setOpcCurso(curso);
+		String rg = JOptionPane.showInputDialog("Adicionar RG: ");
+		novo.setRg(rg);
+		String telefone = JOptionPane.showInputDialog("Adicionar Telefone: ");
+		novo.setTelefone(telefone);
 		
-		lista.adicionaFinal(novo);
-		lista.percorre();
+		return novo;
+	
+		
 		
 	}
 

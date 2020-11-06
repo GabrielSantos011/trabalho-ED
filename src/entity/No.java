@@ -1,17 +1,16 @@
 package entity;
 
 public class No {
-	
+
 	public No prox;
 	public No anterior;
 	public Inscrito inscrito;
 
-	public No(Inscrito inscrito) {
-		this.inscrito=inscrito;
-		prox=null;
-		anterior=null;
+	public No() {
+		prox = null;
+		anterior = null;
 	}
-	
+
 	public No getProx() {
 		return prox;
 	}
@@ -35,5 +34,5 @@ public class No {
 	public void setInscrito(Inscrito inscrito) {
 		this.inscrito = inscrito;
 	}
-	
+
 }

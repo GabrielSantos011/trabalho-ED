@@ -65,5 +65,7 @@ public class Inscrito {
 	public void setCurriculo(String curriculo) {
 		this.curriculo = curriculo;
 	}
+
+	
 	
 }
