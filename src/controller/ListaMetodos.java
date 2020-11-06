@@ -26,17 +26,9 @@ public class ListaMetodos {
 
 		// Consegui apenas inserir os valores com a lista vazia
 		if (vazia()) {
-			// No aux = inicio;
-			// aux.setInscrito(novo.getInscrito());
-			// aux.setAnterior(null);
-			// aux.setProx(null);
-			// inicio = aux;
 			novo.setProx(null);
 			novo.setAnterior(null);
-			// inicio.setInscrito(novo.getInscrito());
 			inicio = novo;
-			// ultimo.setAnterior(null);
-			// ultimo.setProx(null);
 		} else {
 
 			// Inserção no final da lista atualizado
