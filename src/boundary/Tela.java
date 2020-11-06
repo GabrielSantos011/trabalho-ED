@@ -25,6 +25,7 @@ public class Tela {
 				break;
 
 			case 2:
+				//Aqui deixei uma opção de mostra lista apenas para ir testando se funciona
 				String mostra = lista.percorre();
 				JOptionPane.showMessageDialog(null, mostra);
 				break;
