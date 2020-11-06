@@ -69,7 +69,7 @@ public class ListaMetodos {
 	public String concatena(No aux, String lista) {
 
 		// Aqui temos que chamar o getInscrito (referencia de memoria) e depois o dados
-		// dentro da classe (getNome, etc...)
+		// dentro da classe (getNome, etc)
 		if (aux != null) {
 			lista += "Nome: " + aux.getInscrito().getNome() + "\n Curriculo: " + aux.getInscrito().getCurriculo()
 					+ "\nCPF: " + aux.getInscrito().getCpf() + "\nCurso: " + aux.getInscrito().getOpcCurso()
