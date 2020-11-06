@@ -24,7 +24,7 @@ public class ListaMetodos {
 		No novo = new No();
 		novo.setInscrito(inscrito);
 
-		//Consegui apenas inserir os valores com a lista vazia
+		// Consegui apenas inserir os valores com a lista vazia
 		if (vazia()) {
 			// No aux = inicio;
 			// aux.setInscrito(novo.getInscrito());
@@ -38,18 +38,26 @@ public class ListaMetodos {
 			// ultimo.setAnterior(null);
 			// ultimo.setProx(null);
 		} else {
-			
-			//Aqui ainda não foi alterado
-			No aux = ultimo;
+
+			// Inserção no final da lista atualizado
+			No aux;
+			aux = buscaUltimo(inicio);
 			aux.setProx(novo);
 			novo.setAnterior(aux);
 			novo.setProx(null);
-			ultimo.setInscrito(novo.getInscrito());
-			ultimo.setAnterior(novo);
-			ultimo.setProx(novo);
 		} // end if
 		tamanho++;
 	}// end adiciona Final
+
+	// Método para buscar o ultimo elemento da lista de maneira recursiva.
+	public No buscaUltimo(No aux) {
+
+		if (aux.getProx() == null) {
+			return aux;
+		}
+
+		return buscaUltimo(aux.getProx());
+	}
 
 	public String percorre() {
 		String lista = "";
@@ -59,17 +67,17 @@ public class ListaMetodos {
 	}
 
 	public String concatena(No aux, String lista) {
-		
-		//Aqui temos que chamar o getInscrito (referencia de memoria) e depois o dados dentro da classe (getNome, etc...)
+
+		// Aqui temos que chamar o getInscrito (referencia de memoria) e depois o dados
+		// dentro da classe (getNome, etc...)
 		if (aux != null) {
-			lista += "Nome: " + aux.getInscrito().getNome() + "\n Curriculo: "
-					+ aux.getInscrito().getCurriculo() + "\nCPF: " + aux.getInscrito().getCpf() + "\nCurso: "
-					+ aux.getInscrito().getOpcCurso() + "\nE-mail: " + aux.getInscrito().getEmail() + "\nRG: "
-					+ aux.getInscrito().getRg() + "\nTelefone: " + aux.getInscrito().getTelefone();
-			
-			return concatena(aux.getProx(), lista); //Aqui inseri o "return"
+			lista += "Nome: " + aux.getInscrito().getNome() + "\n Curriculo: " + aux.getInscrito().getCurriculo()
+					+ "\nCPF: " + aux.getInscrito().getCpf() + "\nCurso: " + aux.getInscrito().getOpcCurso()
+					+ "\nE-mail: " + aux.getInscrito().getEmail() + "\nRG: " + aux.getInscrito().getRg()
+					+ "\nTelefone: " + aux.getInscrito().getTelefone() + "\n";
+
+			return concatena(aux.getProx(), lista); // Aqui inseri o "return"
 		}
-		
 
 		return lista;
 	}
