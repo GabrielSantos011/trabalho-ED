@@ -52,7 +52,7 @@ public class ListaMetodos {
 	}
 
 	public String percorre() {
-		String lista = "";
+		String lista = "Cadastrados\n\n";
 		No aux = inicio;
 		lista = concatena(aux, lista);
 		return lista;
@@ -66,7 +66,7 @@ public class ListaMetodos {
 			lista += "Nome: " + aux.getInscrito().getNome() + "\n Curriculo: " + aux.getInscrito().getCurriculo()
 					+ "\nCPF: " + aux.getInscrito().getCpf() + "\nCurso: " + aux.getInscrito().getOpcCurso()
 					+ "\nE-mail: " + aux.getInscrito().getEmail() + "\nRG: " + aux.getInscrito().getRg()
-					+ "\nTelefone: " + aux.getInscrito().getTelefone() + "\n";
+					+ "\nTelefone: " + aux.getInscrito().getTelefone() + "\n\n";
 
 			return concatena(aux.getProx(), lista); // Aqui inseri o "return"
 		}

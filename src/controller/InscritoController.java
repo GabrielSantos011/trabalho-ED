@@ -12,7 +12,7 @@ public class InscritoController {
 		//Aqui inserir o JOptionPane
 		Inscrito novo = new Inscrito();
 		String cpf = JOptionPane.showInputDialog("Adicionar CPF: ");
-		novo.setCpf("Adicionar CPF: ");
+		novo.setCpf(cpf);
 		String curriculo = JOptionPane.showInputDialog("Adicionar Currículo: ");
 		novo.setCurriculo(curriculo);
 		String email = JOptionPane.showInputDialog("Adicionar E-mail: ");
@@ -27,9 +27,6 @@ public class InscritoController {
 		novo.setTelefone(telefone);
 		
 		return novo;
-	
-		
-		
 	}
 
 }

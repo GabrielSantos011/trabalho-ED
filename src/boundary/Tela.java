@@ -16,7 +16,10 @@ public class Tela {
 		while (opc != 9) {
 
 			opc = Integer.parseInt(JOptionPane.showInputDialog(
-					"Digite a opção desejada:\n" + "1 - Cadastro de Inscrito\n2 - Mostra\n" + "9 - Fim"));
+					"Digite a opção desejada:\n"
+					+ "1 - Cadastro de Inscrito\n"
+					+ "2 - Mostra\n"
+					+ "9 - Fim"));
 
 			switch (opc) {
 			case 1:
@@ -29,10 +32,15 @@ public class Tela {
 				String mostra = lista.percorre();
 				JOptionPane.showMessageDialog(null, mostra);
 				break;
+				
 			case 9:
 				JOptionPane.showMessageDialog(null, "Fim");
 				break;
+				
+			default:
+				JOptionPane.showMessageDialog(null, "Opção inexistente");
 			}
+			
 		}
 	}
 
