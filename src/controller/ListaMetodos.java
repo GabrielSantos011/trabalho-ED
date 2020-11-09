@@ -58,7 +58,9 @@ public class ListaMetodos {
 				auxiliar = auxiliar.getProx();
 			}
 			inscrito_removido = "O seguinte inscrito foi removido:\n"+"Nome: "+auxiliar.getProx().getInscrito().getNome()+"\nEmail: "+auxiliar.getProx().getInscrito().getEmail()+"\nRG: "+auxiliar.getProx().getInscrito().getRg()+"\nCPF: "+auxiliar.getProx().getInscrito().getCpf()+"\nCurso: "+auxiliar.getProx().getInscrito().getOpcCurso();
+			auxiliar.getProx().getProx().setAnterior(auxiliar);
 			auxiliar.setProx(null);
+			
 			return inscrito_removido;
 		}
 	}
@@ -83,13 +85,13 @@ public class ListaMetodos {
 		while (auxiliar != null){
 			if ((auxiliar.getInscrito().getCpf()) .equals(cpf)) {
 				inscrito_removido = "O seguinte inscrito foi removido:\n"+"Nome: "+auxiliar.getInscrito().getNome()+"\nEmail: "+auxiliar.getInscrito().getEmail()+"\nRG: "+auxiliar.getInscrito().getRg()+"\nCPF: "+auxiliar.getInscrito().getCpf()+"\nCurso: "+auxiliar.getInscrito().getOpcCurso();
-				if (auxiliar.getProx() == null) {
-					auxiliar.getAnterior().setProx(null);
-				}
-				else {
+				if (auxiliar.getProx() != null) {
 					auxiliar.getAnterior().setProx(auxiliar.getProx());
+					auxiliar.getProx().setAnterior(auxiliar.getAnterior());
 				}
+				auxiliar.getAnterior().setProx(null);
 				auxiliar = null;
+			
 			}
 			else {
 				auxiliar = auxiliar.getProx();
