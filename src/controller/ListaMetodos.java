@@ -8,7 +8,6 @@ import entity.No;
 public class ListaMetodos {
 
 	private No inicio;
-	private No ultimo;
 
 	public ListaMetodos() {
 		this.inicio = null;
@@ -124,9 +123,11 @@ public class ListaMetodos {
 		// dentro da classe (getNome, etc)
 		if (aux != null) {
 			lista += "Nome: " + aux.getInscrito().getNome() + "\nCurriculo: " + aux.getInscrito().getCurriculo()
-					+ "\nCPF: " + aux.getInscrito().getCpf() + "\nCurso: " + aux.getInscrito().getOpcCurso()
+					+ "\nCPF: " + aux.getInscrito().getCpf() + "\nOpcCurso: " + aux.getInscrito().getOpcCurso()
 					+ "\nE-mail: " + aux.getInscrito().getEmail() + "\nRG: " + aux.getInscrito().getRg()
-					+ "\nTelefone: " + aux.getInscrito().getTelefone() + "\n\n";
+					+ "\nTelefone: " + aux.getInscrito().getTelefone() +"\nFaculdade: " + aux.getInscrito().getNomeFaculdade() +
+					"\nCurso :" + aux.getInscrito().getNomeCurso() + "\nMédia geral: " + aux.getInscrito().getMediaFaculdade() 
+					+ "\n\n";
 
 			return concatena(aux.getProx(), lista); // Aqui inseri o "return"
 		}
