@@ -38,13 +38,7 @@ public class Tela {
 				break;
 
 			case 2:
-				if (lista.vazia()) {
-					JOptionPane.showMessageDialog(null, "A lista está vazia!");
-				}
-				else {
-					String mostra = lista.percorre();
-					JOptionPane.showMessageDialog(null, mostra);
-				}
+				lista.percorre();
 				break;
 				
 			case 3:
@@ -77,13 +71,9 @@ public class Tela {
 				lista.openFile("ListaAlunos.csv");
 				break;
 				
-			case 6:
-				lista.percorreCsv("ListaAlunos.csv");
-				break;
-				
-			case 7:
-				lista.lerArquivo("ListaAlunos.csv");
-				break;
+//			case 7:
+//				lista.lerArquivo("ListaAlunos.csv");
+//				break;
 				
 			case 8:
 				lista.ordenaArquivo("ListaAlunos.csv");
