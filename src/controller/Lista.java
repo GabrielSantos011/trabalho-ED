@@ -1,8 +1,16 @@
 package controller;
 
+import java.awt.Desktop;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+
 import javax.swing.JOptionPane;
 import entity.No;
+import entity.Inscrito;
+
 
 public class Lista {
 	
@@ -41,7 +49,7 @@ public class Lista {
 			aux.setProx(novo);
 			novo.setAnterior(aux);
 			novo.setProx(null);
-			inscritoController.salvarLista(inicio, arquivo);
+			inscritoController.salvarLista(novo, arquivo);
 			JOptionPane.showMessageDialog(null, "Adicionado");
 			percorre();
 
@@ -56,45 +64,34 @@ public class Lista {
 		return buscaUltimo(aux.getProx());
 	}
 	
-	public String percorre() {
-		String lista = "Cadastrados\n\n";
-		No aux = inicio;
-		lista = concatena(aux, lista);
-		return lista;
-	}
-
-	public String concatena(No aux, String lista) {
-		if (aux != null) {
-			lista += "Nome: " + aux.getInscrito().getNome() + "\nCurriculo: " + aux.getInscrito().getCurriculo()
-					+ "\nCPF: " + aux.getInscrito().getCpf() + "\nOpcCurso: " + aux.getInscrito().getOpcCurso()
-					+ "\nE-mail: " + aux.getInscrito().getEmail() + "\nRG: " + aux.getInscrito().getRg()
-					+ "\nTelefone: " + aux.getInscrito().getTelefone() +"\nFaculdade: " + aux.getInscrito().getNomeFaculdade() +
-					"\nCurso :" + aux.getInscrito().getNomeCurso() + "\nMédia geral: " + aux.getInscrito().getMediaFaculdade() 
-					+ "\n\n";
-
-			return concatena(aux.getProx(), lista);
+	public void percorre() {
+		try {
+			inscritoController.lerArquivo(arquivo);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-
-		return lista;
 	}
-
+		
 	
 	public String removeFinal() {
 		if (inicio.getProx() == null) {
 			return removeInicio();
 		}
-		else 
-		{
+		else {
 			String inscritoRemovido = "";
-			No auxiliar;
-			auxiliar = inicio;
-			while ((auxiliar.getProx()).getProx() != null) {
-				auxiliar = auxiliar.getProx();
+			No auxiliar = inicio;
+			if (inicio.getProx().getProx() == null) {
+				inscritoRemovido = "O seguinte inscrito foi removido:\n"+"Nome: "+auxiliar.getProx().getInscrito().getNome()+"\nEmail: "+auxiliar.getProx().getInscrito().getEmail()+"\nRG: "+auxiliar.getProx().getInscrito().getRg()+"\nCPF: "+auxiliar.getProx().getInscrito().getCpf()+"\nCurso: "+auxiliar.getProx().getInscrito().getOpcCurso();
 			}
-			inscritoRemovido = "O seguinte inscrito foi removido:\n"+"Nome: "+auxiliar.getProx().getInscrito().getNome()+"\nEmail: "+auxiliar.getProx().getInscrito().getEmail()+"\nRG: "+auxiliar.getProx().getInscrito().getRg()+"\nCPF: "+auxiliar.getProx().getInscrito().getCpf()+"\nCurso: "+auxiliar.getProx().getInscrito().getOpcCurso();
-			auxiliar.getProx().getProx().setAnterior(auxiliar);
+			else {
+				auxiliar = inicio;
+				while ((auxiliar.getProx()).getProx() != null) {
+					auxiliar = auxiliar.getProx();
+				}
+				inscritoRemovido = "O seguinte inscrito foi removido:\n"+"Nome: "+auxiliar.getProx().getInscrito().getNome()+"\nEmail: "+auxiliar.getProx().getInscrito().getEmail()+"\nRG: "+auxiliar.getProx().getInscrito().getRg()+"\nCPF: "+auxiliar.getProx().getInscrito().getCpf()+"\nCurso: "+auxiliar.getProx().getInscrito().getOpcCurso();
+				auxiliar.getProx().getProx().setAnterior(auxiliar);
+			}
 			auxiliar.setProx(null);
-			
 			return inscritoRemovido;
 		}
 	}
@@ -102,7 +99,17 @@ public class Lista {
 	private String removeInicio() {
 		String inscritoRemovido = "";
 		No auxiliar = inicio;
-		inscritoRemovido = "O seguinte inscrito foi removido:\n"+"Nome: "+auxiliar.getInscrito().getNome()+"\nEmail: "+auxiliar.getInscrito().getEmail()+"\nRG: "+auxiliar.getInscrito().getRg()+"\nCPF: "+auxiliar.getInscrito().getCpf()+"\nCurso: "+auxiliar.getInscrito().getOpcCurso();
+		inscritoRemovido =  "O seguinte inscrito foi removido:\n"
+				 + "Nome: "+auxiliar.getInscrito().getNome()
+				 + "\nCurrículo: "+auxiliar.getInscrito().getCurriculo()
+				 + "\nCPF: "+auxiliar.getInscrito().getCpf()
+				 +"\nCurso Desejado: "+auxiliar.getInscrito().getOpcCurso()
+				 +"\nEmail: "+auxiliar.getInscrito().getEmail()
+				 +"\nRG: "+auxiliar.getInscrito().getRg()
+				 + "\nTelefone: "+auxiliar.getInscrito().getTelefone()
+				 + "\nFaculdade: "+auxiliar.getInscrito().getNomeFaculdade()
+				 + "\nCurso: "+auxiliar.getInscrito().getNomeCurso()
+				 + "\nMédia Geral: "+auxiliar.getInscrito().getMediaFaculdade();
 		inicio = auxiliar.getProx();
 		return inscritoRemovido;
 	}
@@ -117,7 +124,17 @@ public class Lista {
 		auxiliar = inicio.getProx();
 		while (auxiliar != null){
 			if ((auxiliar.getInscrito().getCpf()) .equals(cpf)) {
-				inscritoRemovido = "O seguinte inscrito foi removido:\n"+"Nome: "+auxiliar.getInscrito().getNome()+"\nEmail: "+auxiliar.getInscrito().getEmail()+"\nRG: "+auxiliar.getInscrito().getRg()+"\nCPF: "+auxiliar.getInscrito().getCpf()+"\nCurso: "+auxiliar.getInscrito().getOpcCurso();
+				inscritoRemovido = "O seguinte inscrito foi removido:\n"
+								 + "Nome: "+auxiliar.getInscrito().getNome()
+								 + "\nCurrículo: "+auxiliar.getInscrito().getCurriculo()
+								 + "\nCPF: "+auxiliar.getInscrito().getCpf()
+								 +"\nCurso Desejado: "+auxiliar.getInscrito().getOpcCurso()
+								 +"\nEmail: "+auxiliar.getInscrito().getEmail()
+								 +"\nRG: "+auxiliar.getInscrito().getRg()
+								 + "\nTelefone: "+auxiliar.getInscrito().getTelefone()
+								 + "\nFaculdade: "+auxiliar.getInscrito().getNomeFaculdade()
+								 + "\nCurso: "+auxiliar.getInscrito().getNomeCurso()
+								 + "\nMédia Geral: "+auxiliar.getInscrito().getMediaFaculdade();
 				if (auxiliar.getProx() != null) {
 					auxiliar.getAnterior().setProx(auxiliar.getProx());
 					auxiliar.getProx().setAnterior(auxiliar.getAnterior());
@@ -131,6 +148,23 @@ public class Lista {
 			}
 		}
 		return inscritoRemovido;
+	}
+	
+	
+	public void openFile(String nome_arquivo) throws IOException {
+		File arq = new File(nome_arquivo);
+		if (arq.exists() && arq.isFile()) {
+			Desktop desktop = Desktop.getDesktop();
+			desktop.open(arq);
+		} else {
+			throw new IOException("Arquivo Inválido");
+		}
+	}
+	
+
+	
+	public void ordenaArquivo(String nomeArquivo) {
+		// Em construção
 	}
 
 }

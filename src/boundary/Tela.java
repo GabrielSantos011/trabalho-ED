@@ -21,6 +21,10 @@ public class Tela {
 					+ "2 - Mostra\n"
 					+ "3 - Remover o último inscrito\n"
 					+ "4 - Remover um inscrito baseado no cpf\n"
+					+ "5 - Abrir o arquivo .csv\n"
+					+ "6 - Carregar o arquivo csv nos nós\n"
+					+ "7 - Ler o arquivo csv no terminal\n"
+					+ "8 - Fazer ordenação do arquivo csv\n"
 					+ "9 - Fim"));
 
 			switch (opc) {
@@ -34,13 +38,7 @@ public class Tela {
 				break;
 
 			case 2:
-				if (lista.vazia()) {
-					JOptionPane.showMessageDialog(null, "A lista está vazia!");
-				}
-				else {
-					String mostra = lista.percorre();
-					JOptionPane.showMessageDialog(null, mostra);
-				}
+				lista.percorre();
 				break;
 				
 			case 3:
@@ -59,13 +57,26 @@ public class Tela {
 					break;
 				}
 				String cpf = JOptionPane.showInputDialog("Insira aqui o cpf do inscrito que deseja remover: ");
-			
-				if (!lista.removeCpf(cpf).equals("")) {
-					JOptionPane.showInternalMessageDialog(null, lista.removeCpf(cpf));
+				String cpf_removido = lista.removeCpf(cpf);
+				if (!cpf_removido.equals("")) {
+					JOptionPane.showInternalMessageDialog(null, cpf_removido);
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "O cpf "+cpf+" não consta na lista.");
 				}
+				break;
+			
+				
+			case 5:
+				lista.openFile("ListaAlunos.csv");
+				break;
+				
+//			case 7:
+//				lista.lerArquivo("ListaAlunos.csv");
+//				break;
+				
+			case 8:
+				lista.ordenaArquivo("ListaAlunos.csv");
 				break;
 
 				
