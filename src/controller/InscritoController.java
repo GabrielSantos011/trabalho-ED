@@ -1,14 +1,21 @@
 package controller;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+
 import javax.swing.JOptionPane;
 
 import entity.Inscrito;
+import entity.No;
 
 public class InscritoController {
 	
 	public Inscrito cadastro() {
-		//Aqui inserir o JOptionPane
-		
 		Inscrito novo = new Inscrito();
 		
 		String nome = JOptionPane.showInputDialog("Adicionar Nome: ");
@@ -42,6 +49,101 @@ public class InscritoController {
 		novo.setCurriculo(curriculo);
 		
 		return novo;
+	}
+	
+	public void salvarLista(No inicio, String nomeArquivo) throws IOException {
+
+		No inscrito = inicio;
+		String dadosInscrito = "";
+		File arquivo = new File(nomeArquivo);
+		boolean existe = false;
+
+		// Veriricar se o arquivo já existe no diretório
+		if (arquivo.exists() && arquivo.isFile()) {
+			existe = true;
+
+			// Configuração de buffer para escrita de linha de arquivo
+			FileInputStream fluxo = new FileInputStream(arquivo);
+			InputStreamReader leitor = new InputStreamReader(fluxo);
+			BufferedReader bufferEscrita = new BufferedReader(leitor);
+
+			String linhaArquivo = bufferEscrita.readLine();
+
+			// Configuração de FileWriter para atualização e inserção de dados no arquivo
+			FileWriter escreveArquivo = new FileWriter(arquivo, existe);
+			PrintWriter imprimeArquivo = new PrintWriter(escreveArquivo);
+
+			// caso a preira linha esteja vazia, o arquivo ainda não possui nenhum dados,
+			// então inserimos o cabeçalho
+			if (linhaArquivo == null) {
+
+				// Caso o arquivo tenha sido criado, mas nenhum dados foi inserido, criamos um
+				// cabeçalho para ele
+				dadosInscrito = "Nome" + ";" + "Curriculo" + ";" + "CPF" + ";" + "Curso desejado" + ";" + "E-mail" + ";" + "RG"
+						+ ";" + "Telefone" + ";" + "Nome da Faculdade" + ";" + "Nome do curso" + ";" + "Média geral" + "\r\n";
+
+				// Escrevemos o cabeçalho
+				imprimeArquivo.write(dadosInscrito);
+
+				// Escrevemos os dados
+				dadosInscrito = inscrito.getInscrito().getNome() + ";" + inscrito.getInscrito().getCurriculo() + ";"
+						+ inscrito.getInscrito().getCpf() + ";" + inscrito.getInscrito().getOpcCurso() + ";"
+						+ inscrito.getInscrito().getEmail() + ";" + inscrito.getInscrito().getRg() + ";"
+						+ inscrito.getInscrito().getTelefone() + ";" + inscrito.getInscrito().getNomeFaculdade() + ";"
+						+ inscrito.getInscrito().getNomeCurso() + ";" + inscrito.getInscrito().getMediaFaculdade() + ";" + "\r\n";
+
+				imprimeArquivo.write(dadosInscrito);
+				imprimeArquivo.flush();
+				imprimeArquivo.close();
+				escreveArquivo.close();
+				bufferEscrita.close();
+
+			} else {
+
+				// Caso contrário, se o arquivo já existe, inserimos os nosvos dados no arquivo
+				dadosInscrito = inscrito.getInscrito().getNome() + ";" + inscrito.getInscrito().getCurriculo() + ";"
+						+ inscrito.getInscrito().getCpf() + ";" + inscrito.getInscrito().getOpcCurso() + ";"
+						+ inscrito.getInscrito().getEmail() + ";" + inscrito.getInscrito().getRg() + ";"
+						+ inscrito.getInscrito().getTelefone() + ";" + inscrito.getInscrito().getNomeFaculdade() + ";"
+						+ inscrito.getInscrito().getNomeCurso() + ";" + inscrito.getInscrito().getMediaFaculdade() + ";" + "\r\n";
+
+				imprimeArquivo.write(dadosInscrito);
+				imprimeArquivo.flush();
+				imprimeArquivo.close();
+				escreveArquivo.close();
+
+			}
+
+			// Caso o arquivo não exista no diretório
+		} else {
+
+			// Criamos o arquivos
+			arquivo.createTempFile("ListaAlunosd", ".csv");
+			existe = true;
+
+			// Configuração de FileWriter para atualização e inserção de dados no arquivo
+			FileWriter escreveArquivo = new FileWriter(arquivo, existe);
+			PrintWriter imprimeArquivo = new PrintWriter(escreveArquivo);
+
+			// Cabeçalho da planilha
+			dadosInscrito = "Nome" + ";" + "Curriculo" + ";" + "CPF" + ";" + "Curso desejado" + ";" + "E-mail" + ";" + "RG"
+					+ ";" + "Telefone" + ";" + "Nome da Faculdade" + ";" + "Nome do curso" + ";" + "Média geral" + "\r\n";
+
+			// Escrevemos o cabeçalho
+			imprimeArquivo.write(dadosInscrito);
+
+			// Dados que o usuário inseriu
+			dadosInscrito = inscrito.getInscrito().getNome() + ";" + inscrito.getInscrito().getCurriculo() + ";"
+					+ inscrito.getInscrito().getCpf() + ";" + inscrito.getInscrito().getOpcCurso() + ";"
+					+ inscrito.getInscrito().getEmail() + ";" + inscrito.getInscrito().getRg() + ";"
+					+ inscrito.getInscrito().getTelefone() + ";" + inscrito.getInscrito().getNomeFaculdade() + ";"
+					+ inscrito.getInscrito().getNomeCurso() + ";" + inscrito.getInscrito().getMediaFaculdade() + ";" + "\r\n";
+			// Escrevemos os dados no arquivo
+			imprimeArquivo.write(dadosInscrito);
+			imprimeArquivo.flush();
+			imprimeArquivo.close();
+			escreveArquivo.close();
+		}
 	}
 
 }
