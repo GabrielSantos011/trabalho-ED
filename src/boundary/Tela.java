@@ -1,19 +1,18 @@
 package boundary;
 
+import java.io.IOException;
+
 import javax.swing.JOptionPane;
 
-import controller.InscritoController;
-import controller.ListaMetodos;
+import controller.Lista;
 
 public class Tela {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		int opc = 0;
-		String inscrito_removido;
 
-		InscritoController metodo = new InscritoController();
-		ListaMetodos lista = new ListaMetodos();
-
+		Lista lista = new Lista();
+		
 		while (opc != 9) {
 
 			opc = Integer.parseInt(JOptionPane.showInputDialog(
@@ -22,13 +21,16 @@ public class Tela {
 					+ "2 - Mostra\n"
 					+ "3 - Remover o último inscrito\n"
 					+ "4 - Remover um inscrito baseado no cpf\n"
+					+ "5 - Abrir o arquivo .csv\n"
+					+ "6 - Carregar o arquivo csv nos nós\n"
+					+ "7 - Ler o arquivo csv no terminal\n"
+					+ "8 - Fazer ordenação do arquivo csv\n"
 					+ "9 - Fim"));
 
 			switch (opc) {
 			case 1:
-				//Coloquei o adiciona final aqui, porque o inicio na classe "ListaMetodos" estava perdendo os dados do "novo" quando saia do método
 				try {
-					lista.adicionaFinal(metodo.cadastro());
+					lista.adicionaFinal();
 				}catch(Exception e){
 					JOptionPane.showMessageDialog(null, "Erro! Não foi possível inserir algum dado\n"+e);
 				}
@@ -36,7 +38,6 @@ public class Tela {
 				break;
 
 			case 2:
-				//Aqui deixei uma opção de mostra lista apenas para ir testando se funciona
 				if (lista.vazia()) {
 					JOptionPane.showMessageDialog(null, "A lista está vazia!");
 				}
@@ -51,8 +52,8 @@ public class Tela {
 					JOptionPane.showMessageDialog(null, "A lista está vazia!");
 					break;
 				}
-				inscrito_removido = lista.remove_final();
-				JOptionPane.showInternalMessageDialog(null, inscrito_removido);
+		
+				JOptionPane.showInternalMessageDialog(null, lista.removeFinal());
 				break;
 				
 				
@@ -62,13 +63,30 @@ public class Tela {
 					break;
 				}
 				String cpf = JOptionPane.showInputDialog("Insira aqui o cpf do inscrito que deseja remover: ");
-				inscrito_removido = lista.remove_cpf(cpf);
-				if (!inscrito_removido .equals("")) {
-					JOptionPane.showInternalMessageDialog(null, inscrito_removido);
+				String cpf_removido = lista.removeCpf(cpf);
+				if (!cpf_removido.equals("")) {
+					JOptionPane.showInternalMessageDialog(null, cpf_removido);
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "O cpf "+cpf+" não consta na lista.");
 				}
+				break;
+			
+				
+			case 5:
+				lista.openFile("ListaAlunos.csv");
+				break;
+				
+			case 6:
+				lista.percorreCsv("ListaAlunos.csv");
+				break;
+				
+			case 7:
+				lista.lerArquivo("ListaAlunos.csv");
+				break;
+				
+			case 8:
+				lista.ordenaArquivo("ListaAlunos.csv");
 				break;
 
 				
