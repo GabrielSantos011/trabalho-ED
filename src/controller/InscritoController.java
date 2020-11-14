@@ -19,6 +19,9 @@ public class InscritoController {
 	public Inscrito cadastro() {
 		Inscrito novo = new Inscrito();
 		
+		String [] opcoes = {"Gestão de Projetos e Processos Organizacionais", "Enganharia e Negócios", "Tecnologia e Inovação"};
+
+		
 		String nome = JOptionPane.showInputDialog("Adicionar Nome: ");
 		novo.setNome(nome);
 		
@@ -31,7 +34,8 @@ public class InscritoController {
 		String cpf = JOptionPane.showInputDialog("Adicionar CPF: ");
 		novo.setCpf(cpf);
 		
-		String cursoPos = JOptionPane.showInputDialog("Adicionar Curso de Pós graduação desejado: ");
+		String cursoPos = (String) JOptionPane.showInputDialog(null, "Escolha o Curso", "Lista de Cursos", JOptionPane.PLAIN_MESSAGE ,null, opcoes
+				,"");
 		novo.setOpcCurso(cursoPos);
 		
 		String telefone = JOptionPane.showInputDialog("Adicionar Telefone: ");

@@ -22,9 +22,7 @@ public class Tela {
 					+ "3 - Remover o último inscrito\n"
 					+ "4 - Remover um inscrito baseado no cpf\n"
 					+ "5 - Abrir o arquivo .csv\n"
-					+ "6 - Carregar o arquivo csv nos nós\n"
-					+ "7 - Ler o arquivo csv no terminal\n"
-					+ "8 - Fazer ordenação do arquivo csv\n"
+					+ "6 - Fazer ordenação do arquivo csv\n"
 					+ "9 - Fim"));
 
 			switch (opc) {
@@ -71,9 +69,6 @@ public class Tela {
 				lista.openFile("ListaAlunos.csv");
 				break;
 				
-//			case 7:
-//				lista.lerArquivo("ListaAlunos.csv");
-//				break;
 				
 			case 8:
 				lista.ordenaArquivo("ListaAlunos.csv");
