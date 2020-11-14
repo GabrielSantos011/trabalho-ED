@@ -71,7 +71,7 @@ public class InscritoController {
 
 			// Configuração de FileWriter para atualização e inserção de dados no arquivo
 			FileWriter escreveArquivo = new FileWriter(arquivo, existe);
-			PrintWriter imprimeArquivo = new PrintWriter(escreveArquivo);
+			PrintWriter adicionaInscrito = new PrintWriter(escreveArquivo);
 
 			// caso a preira linha esteja vazia, o arquivo ainda não possui nenhum dados,
 			// então inserimos o cabeçalho
@@ -83,7 +83,7 @@ public class InscritoController {
 						+ ";" + "Telefone" + ";" + "Nome da Faculdade" + ";" + "Nome do curso" + ";" + "Média geral" + "\r\n";
 
 				// Escrevemos o cabeçalho
-				imprimeArquivo.write(dadosInscrito);
+				adicionaInscrito.write(dadosInscrito);
 
 				// Escrevemos os dados
 				dadosInscrito = inscrito.getInscrito().getNome() + ";" + inscrito.getInscrito().getCurriculo() + ";"
@@ -92,9 +92,9 @@ public class InscritoController {
 						+ inscrito.getInscrito().getTelefone() + ";" + inscrito.getInscrito().getNomeFaculdade() + ";"
 						+ inscrito.getInscrito().getNomeCurso() + ";" + inscrito.getInscrito().getMediaFaculdade() + ";" + "\r\n";
 
-				imprimeArquivo.write(dadosInscrito);
-				imprimeArquivo.flush();
-				imprimeArquivo.close();
+				adicionaInscrito.write(dadosInscrito);
+				adicionaInscrito.flush();
+				adicionaInscrito.close();
 				escreveArquivo.close();
 				bufferEscrita.close();
 
@@ -107,9 +107,9 @@ public class InscritoController {
 						+ inscrito.getInscrito().getTelefone() + ";" + inscrito.getInscrito().getNomeFaculdade() + ";"
 						+ inscrito.getInscrito().getNomeCurso() + ";" + inscrito.getInscrito().getMediaFaculdade() + ";" + "\r\n";
 
-				imprimeArquivo.write(dadosInscrito);
-				imprimeArquivo.flush();
-				imprimeArquivo.close();
+				adicionaInscrito.write(dadosInscrito);
+				adicionaInscrito.flush();
+				adicionaInscrito.close();
 				escreveArquivo.close();
 
 			}
