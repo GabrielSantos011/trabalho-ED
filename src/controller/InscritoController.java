@@ -7,24 +7,39 @@ import entity.Inscrito;
 public class InscritoController {
 	
 	public Inscrito cadastro() {
-		ListaMetodos lista = new ListaMetodos();
-		
 		//Aqui inserir o JOptionPane
+		
 		Inscrito novo = new Inscrito();
-		String cpf = JOptionPane.showInputDialog("Adicionar CPF: ");
-		novo.setCpf(cpf);
-		String curriculo = JOptionPane.showInputDialog("Adicionar Currículo: ");
-		novo.setCurriculo(curriculo);
-		String email = JOptionPane.showInputDialog("Adicionar E-mail: ");
-		novo.setEmail(email);
+		
 		String nome = JOptionPane.showInputDialog("Adicionar Nome: ");
 		novo.setNome(nome);
-		String curso = JOptionPane.showInputDialog("Adicionar Curso: ");
-		novo.setOpcCurso(curso);
+		
+		String email = JOptionPane.showInputDialog("Adicionar E-mail: ");
+		novo.setEmail(email);
+		
 		String rg = JOptionPane.showInputDialog("Adicionar RG: ");
 		novo.setRg(rg);
+		
+		String cpf = JOptionPane.showInputDialog("Adicionar CPF: ");
+		novo.setCpf(cpf);
+		
+		String cursoPos = JOptionPane.showInputDialog("Adicionar Curso de Pós graduação desejado: ");
+		novo.setOpcCurso(cursoPos);
+		
 		String telefone = JOptionPane.showInputDialog("Adicionar Telefone: ");
 		novo.setTelefone(telefone);
+		
+		String faculdade = JOptionPane.showInputDialog("Em faculdade (instituição) você estudou: ");
+		novo.setNomeFaculdade(faculdade);
+		
+		String curso = JOptionPane.showInputDialog("Qual é a sua graduação: ");
+		novo.setNomeCurso(curso);
+		
+		Double media = Double.parseDouble(JOptionPane.showInputDialog("Qual foi a sua média geral na faculdade: "));
+		novo.setMediaFaculdade(media);
+		
+		String curriculo = JOptionPane.showInputDialog("Digite aqui seu Currículo: ");
+		novo.setCurriculo(curriculo);
 		
 		return novo;
 	}

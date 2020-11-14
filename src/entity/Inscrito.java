@@ -8,8 +8,35 @@ public class Inscrito {
 	private String cpf;
 	private String opcCurso;
 	private String telefone;
+	private String nomeFaculdade;
+	private String nomeCurso;
+	private Double mediaFaculdade;
 	private String curriculo;
 	
+	public String getNomeFaculdade() {
+		return nomeFaculdade;
+	}
+
+	public void setNomeFaculdade(String nomeFaculdade) {
+		this.nomeFaculdade = nomeFaculdade;
+	}
+
+	public String getNomeCurso() {
+		return nomeCurso;
+	}
+
+	public void setNomeCurso(String nomeCurso) {
+		this.nomeCurso = nomeCurso;
+	}
+
+	public Double getMediaFaculdade() {
+		return mediaFaculdade;
+	}
+
+	public void setMediaFaculdade(Double mediaFaculdade) {
+		this.mediaFaculdade = mediaFaculdade;
+	}
+
 	public String getNome() {
 		return nome;
 	}
