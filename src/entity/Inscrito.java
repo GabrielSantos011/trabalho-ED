@@ -1,6 +1,6 @@
 package entity;
 
-public class Inscrito {
+public class Inscrito implements Comparable<Inscrito> {
 
 	private String nome;
 	private String email;
@@ -91,6 +91,12 @@ public class Inscrito {
 	
 	public void setCurriculo(String curriculo) {
 		this.curriculo = curriculo;
+	}
+
+	@Override
+	public int compareTo(Inscrito inscrito) {
+		
+		return this.nome.compareTo(inscrito.getNome());
 	}
 
 	
