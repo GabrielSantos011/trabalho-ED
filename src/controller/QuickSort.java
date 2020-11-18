@@ -28,7 +28,7 @@ public class QuickSort {
 				indiceInicio++;
 			}
 
-			while (lista[indiceFim].getNome().compareTo(pivo) >= 0) {
+			while (indiceInicio < indiceFim && lista[indiceFim].getNome().compareTo(pivo) >= 0) {
 				--indiceFim;
 			}
 
