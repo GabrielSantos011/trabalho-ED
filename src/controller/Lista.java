@@ -1,24 +1,23 @@
 package controller;
 
 import java.awt.Desktop;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-
 import javax.swing.JOptionPane;
-import entity.No;
 import entity.Inscrito;
+import entity.No;
 
 public class Lista {
 
 	String arquivo = "ListaAlunos.csv";
 	private No inicio;
 	InscritoController inscritoController = new InscritoController();
+	private int tamanho;
+	private Inscrito[] listaCandidatos;
 
 	public Lista() {
 		this.inicio = null;
+		tamanho = 0;
 	}
 
 	public boolean vazia() {
@@ -31,6 +30,7 @@ public class Lista {
 	public void adicionaFinal() throws IOException {
 		No novo = new No();
 		novo.setInscrito(inscritoController.cadastro());
+		
 
 		if (vazia()) {
 
@@ -51,6 +51,7 @@ public class Lista {
 			JOptionPane.showMessageDialog(null, "Adicionado");
 
 		}
+		tamanho++;
 	}
 
 	public No buscaUltimo(No aux) {
@@ -96,6 +97,7 @@ public class Lista {
 				auxiliar.getProx().getProx().setAnterior(auxiliar);
 			}
 			auxiliar.setProx(null);
+			tamanho--;
 			return inscritoRemovido;
 		}
 	}
@@ -104,13 +106,14 @@ public class Lista {
 		String inscritoRemovido = "";
 		No auxiliar = inicio;
 		inscritoRemovido = "O seguinte inscrito foi removido:\n" + "Nome: " + auxiliar.getInscrito().getNome()
-				+ "\nCurrículo: " + auxiliar.getInscrito().getCurriculo() + "\nCPF: " + auxiliar.getInscrito().getCpf()
+				+ "\nCurrÃ­culo: " + auxiliar.getInscrito().getCurriculo() + "\nCPF: " + auxiliar.getInscrito().getCpf()
 				+ "\nCurso Desejado: " + auxiliar.getInscrito().getOpcCurso() + "\nEmail: "
 				+ auxiliar.getInscrito().getEmail() + "\nRG: " + auxiliar.getInscrito().getRg() + "\nTelefone: "
 				+ auxiliar.getInscrito().getTelefone() + "\nFaculdade: " + auxiliar.getInscrito().getNomeFaculdade()
-				+ "\nCurso: " + auxiliar.getInscrito().getNomeCurso() + "\nMédia Geral: "
+				+ "\nCurso: " + auxiliar.getInscrito().getNomeCurso() + "\nMÃ©dia Geral: "
 				+ auxiliar.getInscrito().getMediaFaculdade();
 		inicio = auxiliar.getProx();
+		tamanho--;
 		return inscritoRemovido;
 	}
 
@@ -124,12 +127,12 @@ public class Lista {
 		while (auxiliar != null) {
 			if ((auxiliar.getInscrito().getCpf()).equals(cpf)) {
 				inscritoRemovido = "O seguinte inscrito foi removido:\n" + "Nome: " + auxiliar.getInscrito().getNome()
-						+ "\nCurrículo: " + auxiliar.getInscrito().getCurriculo() + "\nCPF: "
+						+ "\nCurrÃ­culo: " + auxiliar.getInscrito().getCurriculo() + "\nCPF: "
 						+ auxiliar.getInscrito().getCpf() + "\nCurso Desejado: " + auxiliar.getInscrito().getOpcCurso()
 						+ "\nEmail: " + auxiliar.getInscrito().getEmail() + "\nRG: " + auxiliar.getInscrito().getRg()
 						+ "\nTelefone: " + auxiliar.getInscrito().getTelefone() + "\nFaculdade: "
 						+ auxiliar.getInscrito().getNomeFaculdade() + "\nCurso: "
-						+ auxiliar.getInscrito().getNomeCurso() + "\nMédia Geral: "
+						+ auxiliar.getInscrito().getNomeCurso() + "\nMÃ©dia Geral: "
 						+ auxiliar.getInscrito().getMediaFaculdade();
 				if (auxiliar.getProx() != null) {
 					auxiliar.getAnterior().setProx(auxiliar.getProx());
@@ -142,6 +145,7 @@ public class Lista {
 				auxiliar = auxiliar.getProx();
 			}
 		}
+		tamanho--;
 		return inscritoRemovido;
 	}
 
@@ -151,12 +155,17 @@ public class Lista {
 			Desktop desktop = Desktop.getDesktop();
 			desktop.open(arq);
 		} else {
-			throw new IOException("Arquivo Inválido");
+			throw new IOException("Arquivo InvÃ¡lido");
 		}
 	}
 
-	public void ordenaArquivo(String nomeArquivo) {
-		// Em construção
+	public void ordenaArquivo() {
+		
+		try {
+			inscritoController.percorreCsv(arquivo);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
