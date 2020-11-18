@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.Arrays;
 
 import javax.swing.JOptionPane;
 
@@ -111,7 +110,7 @@ public class InscritoController {
 
 			} else {
 
-				// Caso contrário, se o arquivo já existe, inserimos os nosvos dados no arquivo
+				// Caso contrário, se o arquivo já existe, inserimos os novos dados no arquivo
 				dadosInscrito = inscrito.getInscrito().getNome() + ";" + inscrito.getInscrito().getCurriculo() + ";"
 						+ inscrito.getInscrito().getCpf() + ";" + inscrito.getInscrito().getOpcCurso() + ";"
 						+ inscrito.getInscrito().getEmail() + ";" + inscrito.getInscrito().getRg() + ";"
@@ -161,7 +160,6 @@ public class InscritoController {
 	}
 
 	public void percorreCsv(String nome_arquivo) throws IOException {
-		// inicio = null;
 		File arq = new File(nome_arquivo);
 		String nome = "", curriculo = "", cpf = "", curso = "", email = "", rg = "", telefone = "",
 				nomeDaFaculdade = "", nomeDoCurso = "";
@@ -203,11 +201,59 @@ public class InscritoController {
 			for (int i = 0; i < dados.length; i++) {
 				System.out.println(dados[i].getNome() + "\n");
 			}
+			
+			salvarOrdenado(dados, tamanho);
 
 		} else {
 			throw new IOException("Arquivo Inválido");
 		}
 	}
+
+	public void salvarOrdenado(Inscrito[] dados2, int tamanho) throws IOException {
+
+		String dadosInscrito = "";
+		File arquivo = new File("ordenado.csv");
+		boolean existe = false;
+
+		// Veriricar se o arquivo já existe no diretório
+		if (!arquivo.exists() && arquivo.isFile()) {
+			arquivo.createTempFile("ordenado", ".csv");
+		}		
+
+		// Configuração de FileWriter para atualização e inserção de dados no arquivo
+		FileWriter escreveArquivo = new FileWriter(arquivo);
+		PrintWriter adicionaInscrito = new PrintWriter(escreveArquivo);
+
+		// caso a primeira linha esteja vazia, o arquivo ainda não possui nenhum dados,
+		// então inserimos o cabeçalho
+		dadosInscrito = "Nome" + ";" + "Curriculo" + ";" + "CPF" + ";" + "Curso desejado" + ";" + "E-mail" + ";"
+				+ "RG" + ";" + "Telefone" + ";" + "Nome da Faculdade" + ";" + "Nome do curso" + ";"
+				+ "Média geral" + "\r\n";
+
+		// Escrevemos o cabeçalho
+		adicionaInscrito.write(dadosInscrito);
+		// Escrevemos os dados
+		int contador = 0;
+		while (contador < tamanho) {
+			dadosInscrito = dados[contador].getNome() + ";" 
+						  + dados[contador].getCurriculo() + ";"
+						  + dados[contador].getCpf() + ";"
+						  + dados[contador].getOpcCurso() + ";"
+						  + dados[contador].getEmail() + ";"
+						  + dados[contador].getRg() + ";"
+						  + dados[contador].getTelefone() + ";"
+						  + dados[contador].getNomeFaculdade() + ";"
+						  + dados[contador].getNomeCurso() + ";"
+						  + dados[contador].getMediaFaculdade() + ";"
+						  + "\r\n";
+			adicionaInscrito.write(dadosInscrito);
+			adicionaInscrito.flush();
+			contador += 1;
+		}
+		adicionaInscrito.close();
+		escreveArquivo.close();
+	}
+	
 
 	private void insereNo(String nome, String curriculo, String cpf, String curso, String email, String rg,
 			String telefone, String nomeDaFaculdade, String nomeDoCurso, double mediaGeral, int tamanho) {
@@ -253,7 +299,6 @@ public class InscritoController {
 			contador++;
 		}
 
-		// return dados;
 	}
 
 	public void lerArquivo(String nomeArquivo) throws IOException {
