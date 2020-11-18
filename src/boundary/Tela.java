@@ -16,13 +16,13 @@ public class Tela {
 		while (opc != 9) {
 
 			opc = Integer.parseInt(JOptionPane.showInputDialog(
-					"Digite a opÁ„o desejada:\n"
+					"Digite a op√ß√£o desejada:\n"
 					+ "1 - Cadastro de Inscrito\n"
 					+ "2 - Mostra\n"
-					+ "3 - Remover o ˙ltimo inscrito\n"
+					+ "3 - Remover o √∫ltimo inscrito\n"
 					+ "4 - Remover um inscrito baseado no cpf\n"
 					+ "5 - Abrir o arquivo .csv\n"
-					+ "6 - Fazer ordenaÁ„o do arquivo csv\n"
+					+ "6 - Fazer ordena√ß√£o do arquivo csv\n"
 					+ "9 - Fim"));
 
 			switch (opc) {
@@ -30,7 +30,7 @@ public class Tela {
 				try {
 					lista.adicionaFinal();
 				}catch(Exception e){
-					JOptionPane.showMessageDialog(null, "Erro! N„o foi possÌvel inserir algum dado\n"+e);
+					JOptionPane.showMessageDialog(null, "Erro! N√£o foi poss√≠vel inserir algum dado\n"+e);
 				}
 				
 				break;
@@ -41,7 +41,7 @@ public class Tela {
 				
 			case 3:
 				if (lista.vazia()) {
-					JOptionPane.showMessageDialog(null, "A lista est· vazia!");
+					JOptionPane.showMessageDialog(null, "A lista est√° vazia!");
 					break;
 				}
 		
@@ -51,7 +51,7 @@ public class Tela {
 				
 			case 4:
 				if (lista.vazia()) {
-					JOptionPane.showMessageDialog(null, "A lista est· vazia!");
+					JOptionPane.showMessageDialog(null, "A lista est√° vazia!");
 					break;
 				}
 				String cpf = JOptionPane.showInputDialog("Insira aqui o cpf do inscrito que deseja remover: ");
@@ -60,7 +60,7 @@ public class Tela {
 					JOptionPane.showInternalMessageDialog(null, cpf_removido);
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "O cpf "+cpf+" n„o consta na lista.");
+					JOptionPane.showMessageDialog(null, "O cpf "+cpf+" n√£o consta na lista.");
 				}
 				break;
 			
@@ -69,9 +69,8 @@ public class Tela {
 				lista.openFile("ListaAlunos.csv");
 				break;
 				
-				
-			case 8:
-				lista.ordenaArquivo("ListaAlunos.csv");
+			case 6:
+				lista.ordenaArquivo();
 				break;
 
 				
@@ -80,7 +79,7 @@ public class Tela {
 				break;
 				
 			default:
-				JOptionPane.showMessageDialog(null, "OpÁ„o inexistente");
+				JOptionPane.showMessageDialog(null, "Op√ß√£o inexistente");
 			}
 			
 		}
