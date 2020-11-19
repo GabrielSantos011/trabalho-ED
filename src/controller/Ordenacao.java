@@ -2,7 +2,7 @@ package controller;
 
 import entity.Inscrito;
 
-public class QuickSort {
+public class Ordenacao {
 	
 	public void quickSort(Inscrito lista[], int inicio, int fim) {
 		int divisao;
@@ -20,18 +20,23 @@ public class QuickSort {
 
 		int indiceInicio = inicio;
 		int indiceFim = fim;
-		String pivo = lista[inicio].getNome();
+		Inscrito pivo = lista[inicio];
 		Inscrito auxiliar;
 
+		
 		while (indiceInicio < indiceFim) {
-			while (indiceInicio < indiceFim && lista[indiceInicio].getNome().compareTo(pivo) < 0){
+			
+			// encontrando um nome "maior" que o pivo
+			while (indiceInicio < indiceFim && lista[indiceInicio].getNome().compareTo(pivo.getNome()) <= 0){
 				indiceInicio++;
 			}
 
-			while (indiceInicio < indiceFim && lista[indiceFim].getNome().compareTo(pivo) >= 0) {
+			// encontrar a partir do fim um valor "menor" que o meu pivo
+			while (lista[indiceFim].getNome().compareTo(pivo.getNome()) > 0) {
 				--indiceFim;
 			}
 
+			// Se eles não se cruzaram nos indices, realizamos a troca
 			if (indiceInicio < indiceFim) {
 				auxiliar = lista[indiceInicio];
 				lista[indiceInicio] = lista[indiceFim];
@@ -39,6 +44,10 @@ public class QuickSort {
 
 			}
 		}
+		
+		//Trocamos o indice do incio com o do final, assim poderemos atualizar o pivo, retornar o valor e fazer o particionamento novamente
+		lista[inicio] = lista[indiceFim];
+		lista[indiceFim] = pivo;
 
 		return indiceFim;
 	}

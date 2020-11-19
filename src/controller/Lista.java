@@ -12,12 +12,10 @@ public class Lista {
 	String arquivo = "ListaAlunos.csv";
 	private No inicio;
 	InscritoController inscritoController = new InscritoController();
-	private int tamanho;
-	private Inscrito[] listaCandidatos;
 
 	public Lista() {
 		this.inicio = null;
-		tamanho = 0;
+
 	}
 
 	public boolean vazia() {
@@ -51,7 +49,7 @@ public class Lista {
 			JOptionPane.showMessageDialog(null, "Adicionado");
 
 		}
-		tamanho++;
+
 	}
 
 	public No buscaUltimo(No aux) {
@@ -97,7 +95,6 @@ public class Lista {
 				auxiliar.getProx().getProx().setAnterior(auxiliar);
 			}
 			auxiliar.setProx(null);
-			tamanho--;
 			return inscritoRemovido;
 		}
 	}
@@ -113,7 +110,6 @@ public class Lista {
 				+ "\nCurso: " + auxiliar.getInscrito().getNomeCurso() + "\nMédia Geral: "
 				+ auxiliar.getInscrito().getMediaFaculdade();
 		inicio = auxiliar.getProx();
-		tamanho--;
 		return inscritoRemovido;
 	}
 
@@ -145,7 +141,6 @@ public class Lista {
 				auxiliar = auxiliar.getProx();
 			}
 		}
-		tamanho--;
 		return inscritoRemovido;
 	}
 

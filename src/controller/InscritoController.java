@@ -17,13 +17,14 @@ public class InscritoController {
 
 	private No inicio;
 	private Inscrito[] dados;
-	private int contador = 0;
+	private int contador;
+	
 
 	public Inscrito cadastro() {
 		Inscrito novo = new Inscrito();
 
-		String[] opcoes = { "Gestão de Projetos e Processos Organizacionais", "Enganharia e Negócios",
-				"Tecnologia e Inovação" };
+		String[] opcoes = { "Gest�o de Projetos e Processos Organizacionais", "Enganharia e Neg�cios",
+				"Tecnologia e Iniva��o" };
 
 		String nome = JOptionPane.showInputDialog("Adicionar Nome: ");
 		novo.setNome(nome);
@@ -44,16 +45,16 @@ public class InscritoController {
 		String telefone = JOptionPane.showInputDialog("Adicionar Telefone: ");
 		novo.setTelefone(telefone);
 
-		String faculdade = JOptionPane.showInputDialog("Em faculdade (instituição) você estudou: ");
+		String faculdade = JOptionPane.showInputDialog("Em faculdade (institui��o) voc� estudou: ");
 		novo.setNomeFaculdade(faculdade);
 
-		String curso = JOptionPane.showInputDialog("Qual é a sua graduação: ");
+		String curso = JOptionPane.showInputDialog("Qual � a sua gradua��o: ");
 		novo.setNomeCurso(curso);
 
-		Double media = Double.parseDouble(JOptionPane.showInputDialog("Qual foi a sua média geral na faculdade: "));
+		Double media = Double.parseDouble(JOptionPane.showInputDialog("Qual foi a sua m�dia geral na faculdade: "));
 		novo.setMediaFaculdade(media);
 
-		String curriculo = JOptionPane.showInputDialog("Digite aqui seu Currículo: ");
+		String curriculo = JOptionPane.showInputDialog("Digite aqui seu Curr�culo: ");
 		novo.setCurriculo(curriculo);
 
 		return novo;
@@ -77,7 +78,8 @@ public class InscritoController {
 
 			String linhaArquivo = bufferEscrita.readLine();
 
-			// Configuração de FileWriter para atualização e inserção de dados no arquivo
+			// Configuração de FileWriter para atualização e inserção de dados no
+			// arquivo
 			FileWriter escreveArquivo = new FileWriter(arquivo, existe);
 			PrintWriter adicionaInscrito = new PrintWriter(escreveArquivo);
 
@@ -89,7 +91,7 @@ public class InscritoController {
 				// cabeçalho para ele
 				dadosInscrito = "Nome" + ";" + "Curriculo" + ";" + "CPF" + ";" + "Curso desejado" + ";" + "E-mail" + ";"
 						+ "RG" + ";" + "Telefone" + ";" + "Nome da Faculdade" + ";" + "Nome do curso" + ";"
-						+ "Média geral" + "\r\n";
+						+ "M�dia geral" + "\r\n";
 
 				// Escrevemos o cabeçalho
 				adicionaInscrito.write(dadosInscrito);
@@ -132,13 +134,14 @@ public class InscritoController {
 			arquivo.createTempFile("ListaAlunosd", ".csv");
 			existe = true;
 
-			// Configuração de FileWriter para atualização e inserção de dados no arquivo
+			// Configuração de FileWriter para atualização e inserção de dados no
+			// arquivo
 			FileWriter escreveArquivo = new FileWriter(arquivo, existe);
 			PrintWriter adicionaInscrito = new PrintWriter(escreveArquivo);
 
 			// Cabeçalho da planilha
 			dadosInscrito = "Nome" + ";" + "Curriculo" + ";" + "CPF" + ";" + "Curso desejado" + ";" + "E-mail" + ";"
-					+ "RG" + ";" + "Telefone" + ";" + "Nome da Faculdade" + ";" + "Nome do curso" + ";" + "Média geral"
+					+ "RG" + ";" + "Telefone" + ";" + "Nome da Faculdade" + ";" + "Nome do curso" + ";" + "Mdia geral"
 					+ "\r\n";
 
 			// Escrevemos o cabeçalho
@@ -165,7 +168,7 @@ public class InscritoController {
 				nomeDaFaculdade = "", nomeDoCurso = "";
 		double mediaGeral = 0;
 		int tamanho = 0;
-		QuickSort ordenacao = new QuickSort();
+		Ordenacao ordenacao = new Ordenacao();
 		if (arq.exists() && arq.isFile()) {
 			FileInputStream fluxo = new FileInputStream(arq);
 			InputStreamReader leitor = new InputStreamReader(fluxo);
@@ -173,8 +176,14 @@ public class InscritoController {
 			String linha = buffer.readLine();
 			String[] dadosDoCandidato;
 			linha = buffer.readLine(); // pulando a primeira linha
+			
+			//Cason�o seja mais a primeira itera��o, verificamos esta condi��o para n�o ter duplicidade na vari�vel inicio
+			if(contador > 0) {
+				inicio = null;
+			}
+
 			while (linha != null) { // procurando EOF
-				tamanho++;
+
 				dadosDoCandidato = linha.split(";");
 				nome = dadosDoCandidato[0];
 				curriculo = dadosDoCandidato[1];
@@ -190,6 +199,8 @@ public class InscritoController {
 						tamanho);
 				linha = buffer.readLine();
 
+				tamanho++;
+
 			}
 			buffer.close();
 			leitor.close();
@@ -201,11 +212,11 @@ public class InscritoController {
 			for (int i = 0; i < dados.length; i++) {
 				System.out.println(dados[i].getNome() + "\n");
 			}
-			
+
 			salvarOrdenado(dados, tamanho);
 
 		} else {
-			throw new IOException("Arquivo Inválido");
+			throw new IOException("Arquivo Inv�lido");
 		}
 	}
 
@@ -218,34 +229,30 @@ public class InscritoController {
 		// Veriricar se o arquivo já existe no diretório
 		if (!arquivo.exists() && arquivo.isFile()) {
 			arquivo.createTempFile("ordenado", ".csv");
-		}		
+		}
 
-		// Configuração de FileWriter para atualização e inserção de dados no arquivo
+		// Configuração de FileWriter para atualização e inserção de dados no
+		// arquivo
 		FileWriter escreveArquivo = new FileWriter(arquivo);
 		PrintWriter adicionaInscrito = new PrintWriter(escreveArquivo);
 
 		// caso a primeira linha esteja vazia, o arquivo ainda não possui nenhum dados,
 		// então inserimos o cabeçalho
-		dadosInscrito = "Nome" + ";" + "Curriculo" + ";" + "CPF" + ";" + "Curso desejado" + ";" + "E-mail" + ";"
-				+ "RG" + ";" + "Telefone" + ";" + "Nome da Faculdade" + ";" + "Nome do curso" + ";"
-				+ "Média geral" + "\r\n";
+
+		dadosInscrito = "Nome" + ";" + "Curriculo" + ";" + "CPF" + ";" + "Curso desejado" + ";" + "E-mail" + ";" + "RG"
+				+ ";" + "Telefone" + ";" + "Nome da Faculdade" + ";" + "Nome do curso" + ";" + "Média geral" + "\r\n";
 
 		// Escrevemos o cabeçalho
 		adicionaInscrito.write(dadosInscrito);
+
 		// Escrevemos os dados
 		int contador = 0;
 		while (contador < tamanho) {
-			dadosInscrito = dados[contador].getNome() + ";" 
-						  + dados[contador].getCurriculo() + ";"
-						  + dados[contador].getCpf() + ";"
-						  + dados[contador].getOpcCurso() + ";"
-						  + dados[contador].getEmail() + ";"
-						  + dados[contador].getRg() + ";"
-						  + dados[contador].getTelefone() + ";"
-						  + dados[contador].getNomeFaculdade() + ";"
-						  + dados[contador].getNomeCurso() + ";"
-						  + dados[contador].getMediaFaculdade() + ";"
-						  + "\r\n";
+			dadosInscrito = dados[contador].getNome() + ";" + dados[contador].getCurriculo() + ";"
+					+ dados[contador].getCpf() + ";" + dados[contador].getOpcCurso() + ";" + dados[contador].getEmail()
+					+ ";" + dados[contador].getRg() + ";" + dados[contador].getTelefone() + ";"
+					+ dados[contador].getNomeFaculdade() + ";" + dados[contador].getNomeCurso() + ";"
+					+ dados[contador].getMediaFaculdade() + ";" + "\r\n";
 			adicionaInscrito.write(dadosInscrito);
 			adicionaInscrito.flush();
 			contador += 1;
@@ -253,13 +260,14 @@ public class InscritoController {
 		adicionaInscrito.close();
 		escreveArquivo.close();
 	}
-	
 
 	private void insereNo(String nome, String curriculo, String cpf, String curso, String email, String rg,
 			String telefone, String nomeDaFaculdade, String nomeDoCurso, double mediaGeral, int tamanho) {
 		Lista lista = new Lista();
 		No novo_no = new No();
 		Inscrito novo_inscrito = new Inscrito();
+	
+		
 		novo_inscrito.setNome(nome);
 		novo_inscrito.setCurriculo(curriculo);
 		novo_inscrito.setCpf(cpf);
@@ -272,8 +280,8 @@ public class InscritoController {
 		novo_inscrito.setMediaFaculdade(mediaGeral);
 
 		novo_no.setInscrito(novo_inscrito);
-
-		if (inicio == null) {
+		
+		 if (inicio == null) {
 
 			novo_no.setProx(null);
 			novo_no.setAnterior(inicio);
@@ -288,11 +296,18 @@ public class InscritoController {
 			novo_no.setProx(null);
 
 		}
+		
+		
 	}
 
 	private void converteEmVetor(No inicio, int tamanho) {
 		No auxiliar = inicio;
 		dados = new Inscrito[tamanho];
+		
+		//Caso n�o seja a primeira itera��o, zeramos o contador para que ele possa iniciar do indice 0
+		if (contador > 0) {
+			contador = 0;
+		}
 		while (auxiliar != null) {
 			dados[contador] = auxiliar.getInscrito();
 			auxiliar = auxiliar.getProx();
@@ -303,7 +318,7 @@ public class InscritoController {
 
 	public void lerArquivo(String nomeArquivo) throws IOException {
 		File arq = new File(nomeArquivo);
-		QuickSort ordenacao = new QuickSort();
+		Ordenacao ordenacao = new Ordenacao();
 
 		String nome = "", curriculo = "", cpf = "", curso = "", email = "", rg = "", telefone = "",
 				nomeDaFaculdade = "", nomeDoCurso = "", mediaGeral = "";
@@ -329,7 +344,7 @@ public class InscritoController {
 				String candidato = "Nome: " + nome + "\n" + "Curriculo: " + curriculo + "\n" + "CPF: " + cpf + "\n"
 						+ "Curso: " + curso + "\n" + "Email: " + email + "\n" + "RG: " + rg + "\n" + "Telefone: "
 						+ telefone + "\n" + "Faculdade: " + nomeDaFaculdade + "\n" + "Curso: " + nomeDoCurso + "\n"
-						+ "Média Geral: " + mediaGeral + "\n";
+						+ "M�dia Geral: " + mediaGeral + "\n";
 				System.out.println(candidato);
 				System.out.println("___________________________________");
 				linha = buffer.readLine();
@@ -340,9 +355,8 @@ public class InscritoController {
 			leitor.close();
 			fluxo.close();
 		} else {
-			throw new IOException("Arquivo Inválido");
+			throw new IOException("Arquivo In�lido");
 		}
 	}
 
 }
-
