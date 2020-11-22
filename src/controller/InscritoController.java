@@ -23,8 +23,8 @@ public class InscritoController {
 	public Inscrito cadastro() {
 		Inscrito novo = new Inscrito();
 
-		String[] opcoes = { "Gestão de Projetos e Processos Organizacionais", "Enganharia e Negócios",
-				"Tecnologia e Inivação" };
+		String[] opcoes = { "Gestï¿½o de Projetos e Processos Organizacionais", "Enganharia e Negï¿½cios",
+				"Tecnologia e Inivaï¿½ï¿½o" };
 
 		String nome = JOptionPane.showInputDialog("Adicionar Nome: ");
 		novo.setNome(nome);
@@ -45,16 +45,16 @@ public class InscritoController {
 		String telefone = JOptionPane.showInputDialog("Adicionar Telefone: ");
 		novo.setTelefone(telefone);
 
-		String faculdade = JOptionPane.showInputDialog("Em faculdade (instituição) você estudou: ");
+		String faculdade = JOptionPane.showInputDialog("Em faculdade (instituiï¿½ï¿½o) vocï¿½ estudou: ");
 		novo.setNomeFaculdade(faculdade);
 
-		String curso = JOptionPane.showInputDialog("Qual é a sua graduação: ");
+		String curso = JOptionPane.showInputDialog("Qual ï¿½ a sua graduaï¿½ï¿½o: ");
 		novo.setNomeCurso(curso);
 
-		Double media = Double.parseDouble(JOptionPane.showInputDialog("Qual foi a sua média geral na faculdade: "));
+		Double media = Double.parseDouble(JOptionPane.showInputDialog("Qual foi a sua mï¿½dia geral na faculdade: "));
 		novo.setMediaFaculdade(media);
 
-		String curriculo = JOptionPane.showInputDialog("Digite aqui seu Currículo: ");
+		String curriculo = JOptionPane.showInputDialog("Digite aqui seu Currï¿½culo: ");
 		novo.setCurriculo(curriculo);
 
 		return novo;
@@ -91,7 +91,7 @@ public class InscritoController {
 				// cabeÃ§alho para ele
 				dadosInscrito = "Nome" + ";" + "Curriculo" + ";" + "CPF" + ";" + "Curso desejado" + ";" + "E-mail" + ";"
 						+ "RG" + ";" + "Telefone" + ";" + "Nome da Faculdade" + ";" + "Nome do curso" + ";"
-						+ "Média geral" + "\r\n";
+						+ "Mï¿½dia geral" + "\r\n";
 
 				// Escrevemos o cabeÃ§alho
 				adicionaInscrito.write(dadosInscrito);
@@ -177,7 +177,7 @@ public class InscritoController {
 			String[] dadosDoCandidato;
 			linha = buffer.readLine(); // pulando a primeira linha
 			
-			//Casonão seja mais a primeira iteração, verificamos esta condição para não ter duplicidade na variável inicio
+			//Casonï¿½o seja mais a primeira iteraï¿½ï¿½o, verificamos esta condiï¿½ï¿½o para nï¿½o ter duplicidade na variï¿½vel inicio
 			if(contador > 0) {
 				inicio = null;
 			}
@@ -216,7 +216,7 @@ public class InscritoController {
 			salvarOrdenado(dados, tamanho);
 
 		} else {
-			throw new IOException("Arquivo Inválido");
+			throw new IOException("Arquivo Invï¿½lido");
 		}
 	}
 
@@ -304,7 +304,7 @@ public class InscritoController {
 		No auxiliar = inicio;
 		dados = new Inscrito[tamanho];
 		
-		//Caso não seja a primeira iteração, zeramos o contador para que ele possa iniciar do indice 0
+		//Caso nï¿½o seja a primeira iteraï¿½ï¿½o, zeramos o contador para que ele possa iniciar do indice 0
 		if (contador > 0) {
 			contador = 0;
 		}
@@ -344,7 +344,7 @@ public class InscritoController {
 				String candidato = "Nome: " + nome + "\n" + "Curriculo: " + curriculo + "\n" + "CPF: " + cpf + "\n"
 						+ "Curso: " + curso + "\n" + "Email: " + email + "\n" + "RG: " + rg + "\n" + "Telefone: "
 						+ telefone + "\n" + "Faculdade: " + nomeDaFaculdade + "\n" + "Curso: " + nomeDoCurso + "\n"
-						+ "Média Geral: " + mediaGeral + "\n";
+						+ "Mï¿½dia Geral: " + mediaGeral + "\n";
 				System.out.println(candidato);
 				System.out.println("___________________________________");
 				linha = buffer.readLine();
@@ -355,7 +355,7 @@ public class InscritoController {
 			leitor.close();
 			fluxo.close();
 		} else {
-			throw new IOException("Arquivo Inálido");
+			throw new IOException("Arquivo Inï¿½lido");
 		}
 	}
 
