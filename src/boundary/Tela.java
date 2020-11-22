@@ -16,13 +16,13 @@ public class Tela {
 		while (opc != 9) {
 
 			opc = Integer.parseInt(JOptionPane.showInputDialog(
-					"Digite a opção desejada:\n"
+					"Digite a opï¿½ï¿½o desejada:\n"
 					+ "1 - Cadastro de Inscrito\n"
 					+ "2 - Mostra\n"
-					+ "3 - Remover o Último inscrito\n"
+					+ "3 - Remover o ï¿½ltimo inscrito\n"
 					+ "4 - Remover um inscrito baseado no cpf\n"
 					+ "5 - Abrir o arquivo .csv\n"
-					+ "6 - Fazer ordenação do arquivo csv\n"
+					+ "6 - Fazer ordenaï¿½ï¿½o do arquivo csv\n"
 					+ "9 - Fim"));
 
 			switch (opc) {
@@ -30,7 +30,7 @@ public class Tela {
 				try {
 					lista.adicionaFinal();
 				}catch(Exception e){
-					JOptionPane.showMessageDialog(null, "Erro! Não foi possível inserir algum dado\n"+e);
+					JOptionPane.showMessageDialog(null, "Erro! Nï¿½o foi possï¿½vel inserir algum dado\n"+e);
 				}
 				
 				break;
@@ -40,24 +40,15 @@ public class Tela {
 				break;
 				
 			case 3:
-				if (lista.vazia()) {
-					JOptionPane.showMessageDialog(null, "A lista está vazia!");
-					break;
-				}
-		
-				JOptionPane.showInternalMessageDialog(null, lista.removeFinal());
+				System.out.println(lista.removeFinal());
 				break;
 				
 				
 			case 4:
-				if (lista.vazia()) {
-					JOptionPane.showMessageDialog(null, "A lista está vazia!");
-					break;
-				}
 				String cpf = JOptionPane.showInputDialog("Insira aqui o cpf do inscrito que deseja remover: ");
 				String cpf_removido = lista.removeCpf(cpf);
 				if (!cpf_removido.equals("")) {
-					JOptionPane.showInternalMessageDialog(null, cpf_removido);
+					System.out.println(cpf_removido);
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "O cpf "+cpf+" nÃ£o consta na lista.");
@@ -79,7 +70,7 @@ public class Tela {
 				break;
 				
 			default:
-				JOptionPane.showMessageDialog(null, "Opção inexistente");
+				JOptionPane.showMessageDialog(null, "Opï¿½ï¿½o inexistente");
 			}
 			
 		}
