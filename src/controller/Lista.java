@@ -243,7 +243,7 @@ public class Lista {
 	public void salvarDepoisDeRemover() throws IOException {
 
 		String dadosInscrito = "";
-		File arquivo_atualizado = new File("removido.csv");
+		File arquivo_atualizado = new File(arquivo);
 
 		
 		// Configuração de FileWriter para atualização e inserção de dados no
