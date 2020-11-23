@@ -84,11 +84,11 @@ public class Lista {
 			No auxiliar = inicio;
 			if (inicio.getProx().getProx() == null) {
 				inscritoRemovido = "O seguinte inscrito foi removido:\n" + "Nome: " + auxiliar.getProx().getInscrito().getNome()
-						+ "\nCurr√≠culo: " + auxiliar.getProx().getInscrito().getCurriculo() + "\nCPF: " + auxiliar.getProx().getInscrito().getCpf()
+						+ "\nCurrÌculo: " + auxiliar.getProx().getInscrito().getCurriculo() + "\nCPF: " + auxiliar.getProx().getInscrito().getCpf()
 						+ "\nCurso Desejado: " + auxiliar.getProx().getInscrito().getOpcCurso() + "\nEmail: "
 						+ auxiliar.getProx().getInscrito().getEmail() + "\nRG: " + auxiliar.getProx().getInscrito().getRg() + "\nTelefone: "
 						+ auxiliar.getInscrito().getTelefone() + "\nFaculdade: " + auxiliar.getInscrito().getNomeFaculdade()
-						+ "\nCurso: " + auxiliar.getProx().getInscrito().getNomeCurso() + "\nM√©dia Geral: "
+						+ "\nCurso: " + auxiliar.getProx().getInscrito().getNomeCurso() + "\nMÈdia Geral: "
 						+ auxiliar.getProx().getInscrito().getMediaFaculdade();
 			} else {
 				auxiliar = inicio;
@@ -96,11 +96,11 @@ public class Lista {
 					auxiliar = auxiliar.getProx();
 				}
 				inscritoRemovido = "O seguinte inscrito foi removido:\n" + "Nome: " + auxiliar.getProx().getInscrito().getNome()
-						+ "\nCurr√≠culo: " + auxiliar.getProx().getInscrito().getCurriculo() + "\nCPF: " + auxiliar.getProx().getInscrito().getCpf()
+						+ "\nCurrÌculo: " + auxiliar.getProx().getInscrito().getCurriculo() + "\nCPF: " + auxiliar.getProx().getInscrito().getCpf()
 						+ "\nCurso Desejado: " + auxiliar.getProx().getInscrito().getOpcCurso() + "\nEmail: "
 						+ auxiliar.getProx().getInscrito().getEmail() + "\nRG: " + auxiliar.getProx().getInscrito().getRg() + "\nTelefone: "
 						+ auxiliar.getInscrito().getTelefone() + "\nFaculdade: " + auxiliar.getInscrito().getNomeFaculdade()
-						+ "\nCurso: " + auxiliar.getProx().getInscrito().getNomeCurso() + "\nM√©dia Geral: "
+						+ "\nCurso: " + auxiliar.getProx().getInscrito().getNomeCurso() + "\nMÈdia Geral: "
 						+ auxiliar.getProx().getInscrito().getMediaFaculdade();
 			}
 			auxiliar.setProx(null);
@@ -113,11 +113,11 @@ public class Lista {
 		String inscritoRemovido = "";
 		No auxiliar = inicio;
 		inscritoRemovido = "O seguinte inscrito foi removido:\n" + "Nome: " + auxiliar.getInscrito().getNome()
-				+ "\nCurr√≠culo: " + auxiliar.getInscrito().getCurriculo() + "\nCPF: " + auxiliar.getInscrito().getCpf()
+				+ "\nCurrÌculo: " + auxiliar.getInscrito().getCurriculo() + "\nCPF: " + auxiliar.getInscrito().getCpf()
 				+ "\nCurso Desejado: " + auxiliar.getInscrito().getOpcCurso() + "\nEmail: "
 				+ auxiliar.getInscrito().getEmail() + "\nRG: " + auxiliar.getInscrito().getRg() + "\nTelefone: "
 				+ auxiliar.getInscrito().getTelefone() + "\nFaculdade: " + auxiliar.getInscrito().getNomeFaculdade()
-				+ "\nCurso: " + auxiliar.getInscrito().getNomeCurso() + "\nM√©dia Geral: "
+				+ "\nCurso: " + auxiliar.getInscrito().getNomeCurso() + "\nMÈdia Geral: "
 				+ auxiliar.getInscrito().getMediaFaculdade();
 		inicio = auxiliar.getProx();
 		salvarDepoisDeRemover();
@@ -135,12 +135,12 @@ public class Lista {
 		while (auxiliar != null) {
 			if ((auxiliar.getInscrito().getCpf()).equals(cpf)) {
 				inscritoRemovido = "O seguinte inscrito foi removido:\n" + "Nome: " + auxiliar.getInscrito().getNome()
-						+ "\nCurr√≠culo: " + auxiliar.getInscrito().getCurriculo() + "\nCPF: "
+						+ "\nCurrÌculo: " + auxiliar.getInscrito().getCurriculo() + "\nCPF: "
 						+ auxiliar.getInscrito().getCpf() + "\nCurso Desejado: " + auxiliar.getInscrito().getOpcCurso()
 						+ "\nEmail: " + auxiliar.getInscrito().getEmail() + "\nRG: " + auxiliar.getInscrito().getRg()
 						+ "\nTelefone: " + auxiliar.getInscrito().getTelefone() + "\nFaculdade: "
 						+ auxiliar.getInscrito().getNomeFaculdade() + "\nCurso: "
-						+ auxiliar.getInscrito().getNomeCurso() + "\nM√©dia Geral: "
+						+ auxiliar.getInscrito().getNomeCurso() + "\nMÈdia Geral: "
 						+ auxiliar.getInscrito().getMediaFaculdade();
 				if (auxiliar.getProx() != null) {
 					auxiliar.getAnterior().setProx(auxiliar.getProx());
@@ -200,7 +200,7 @@ public class Lista {
 			fluxo.close();
 		}
 		else {
-			JOptionPane.showMessageDialog(null, "Desculpe, o arquivo n√£o existe!");
+			JOptionPane.showMessageDialog(null, "Desculpe, o arquivo n„o existe!");
 		}
 	}
 	
@@ -246,17 +246,14 @@ public class Lista {
 		File arquivo_atualizado = new File(arquivo);
 
 		
-		// Configura√ß√£o de FileWriter para atualiza√ß√£o e inser√ß√£o de dados no
-		// arquivo
+		// ConfiguraÁ„o de FileWriter para atualizaÁ„o e inserÁ„o de dados no arquivo
 		FileWriter escreveArquivo = new FileWriter(arquivo_atualizado, false);
 		PrintWriter adicionaInscrito = new PrintWriter(escreveArquivo);
-
-		// Inserir o cabe√ßalho
 
 		dadosInscrito = "Nome" + ";" + "Curriculo" + ";" + "CPF" + ";" + "Curso desejado" + ";" + "E-mail" + ";" + "RG"
 				+ ";" + "Telefone" + ";" + "Nome da Faculdade" + ";" + "Nome do curso" + ";" + "M√©dia geral" + "\r\n";
 
-		// Escrevemos o cabe√ßalho
+		// Escrevemos o cabeÁalho
 		adicionaInscrito.write(dadosInscrito);
 
 		// Escrevemos os dados
@@ -284,7 +281,7 @@ public class Lista {
 			Desktop desktop = Desktop.getDesktop();
 			desktop.open(arq);
 		} else {
-			throw new IOException("Arquivo Inv√°lido");
+			throw new IOException("Arquivo Inv·lido");
 		}
 	}
 

@@ -16,13 +16,13 @@ public class Tela {
 		while (opc != 9) {
 
 			opc = Integer.parseInt(JOptionPane.showInputDialog(
-					"Digite a opï¿½ï¿½o desejada:\n"
+					"Digite a opção desejada:\n"
 					+ "1 - Cadastro de Inscrito\n"
 					+ "2 - Mostra\n"
-					+ "3 - Remover o ï¿½ltimo inscrito\n"
+					+ "3 - Remover o último inscrito\n"
 					+ "4 - Remover um inscrito baseado no cpf\n"
 					+ "5 - Abrir o arquivo .csv\n"
-					+ "6 - Fazer ordenaï¿½ï¿½o do arquivo csv\n"
+					+ "6 - Fazer ordenação do arquivo csv\n"
 					+ "9 - Fim"));
 
 			switch (opc) {
@@ -30,7 +30,7 @@ public class Tela {
 				try {
 					lista.adicionaFinal();
 				}catch(Exception e){
-					JOptionPane.showMessageDialog(null, "Erro! Nï¿½o foi possï¿½vel inserir algum dado\n"+e);
+					JOptionPane.showMessageDialog(null, "Erro! Não foi possível inserir algum dado\n"+e);
 				}
 				
 				break;
@@ -51,7 +51,7 @@ public class Tela {
 					System.out.println(cpf_removido);
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "O cpf "+cpf+" nÃ£o consta na lista.");
+					JOptionPane.showMessageDialog(null, "O cpf "+cpf+" não consta na lista.");
 				}
 				break;
 			
@@ -70,7 +70,7 @@ public class Tela {
 				break;
 				
 			default:
-				JOptionPane.showMessageDialog(null, "Opï¿½ï¿½o inexistente");
+				JOptionPane.showMessageDialog(null, "Opção inexistente");
 			}
 			
 		}

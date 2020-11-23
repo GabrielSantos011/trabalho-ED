@@ -23,8 +23,8 @@ public class InscritoController {
 	public Inscrito cadastro() {
 		Inscrito novo = new Inscrito();
 
-		String[] opcoes = { "Gestï¿½o de Projetos e Processos Organizacionais", "Enganharia e Negï¿½cios",
-				"Tecnologia e Inivaï¿½ï¿½o" };
+		String[] opcoes = { "Gestão de Projetos e Processos Organizacionais", "Enganharia e Negócios",
+				"Tecnologia e Inovação" };
 
 		String nome = JOptionPane.showInputDialog("Adicionar Nome: ");
 		novo.setNome(nome);
@@ -45,16 +45,16 @@ public class InscritoController {
 		String telefone = JOptionPane.showInputDialog("Adicionar Telefone: ");
 		novo.setTelefone(telefone);
 
-		String faculdade = JOptionPane.showInputDialog("Em faculdade (instituiï¿½ï¿½o) vocï¿½ estudou: ");
+		String faculdade = JOptionPane.showInputDialog("Em faculdade (instituição) você estudou: ");
 		novo.setNomeFaculdade(faculdade);
 
-		String curso = JOptionPane.showInputDialog("Qual ï¿½ a sua graduaï¿½ï¿½o: ");
+		String curso = JOptionPane.showInputDialog("Qual é a sua graduação: ");
 		novo.setNomeCurso(curso);
 
-		Double media = Double.parseDouble(JOptionPane.showInputDialog("Qual foi a sua mï¿½dia geral na faculdade: "));
+		Double media = Double.parseDouble(JOptionPane.showInputDialog("Qual foi a sua média geral na faculdade: "));
 		novo.setMediaFaculdade(media);
 
-		String curriculo = JOptionPane.showInputDialog("Digite aqui seu Currï¿½culo: ");
+		String curriculo = JOptionPane.showInputDialog("Digite aqui seu Curríulo: ");
 		novo.setCurriculo(curriculo);
 
 		return novo;
@@ -67,7 +67,7 @@ public class InscritoController {
 		File arquivo = new File(nomeArquivo);
 		boolean existe = false;
 
-		// Veriricar se o arquivo jÃ¡ existe no diretÃ³rio
+		// Veriricar se o arquivo já existe
 		if (arquivo.exists() && arquivo.isFile()) {
 			existe = true;
 
@@ -78,22 +78,19 @@ public class InscritoController {
 
 			String linhaArquivo = bufferEscrita.readLine();
 
-			// ConfiguraÃ§Ã£o de FileWriter para atualizaÃ§Ã£o e inserÃ§Ã£o de dados no
-			// arquivo
+			// Configuração de FileWriter para atualização e inserção de dados no arquivo
 			FileWriter escreveArquivo = new FileWriter(arquivo, existe);
 			PrintWriter adicionaInscrito = new PrintWriter(escreveArquivo);
 
-			// caso a preira linha esteja vazia, o arquivo ainda nÃ£o possui nenhum dados,
-			// entÃ£o inserimos o cabeÃ§alho
+			// caso a primeira linha esteja vazia, o arquivo ainda não possui nenhum dados,
+			// então inserimos o cabeçalho
 			if (linhaArquivo == null) {
 
-				// Caso o arquivo tenha sido criado, mas nenhum dados foi inserido, criamos um
-				// cabeÃ§alho para ele
 				dadosInscrito = "Nome" + ";" + "Curriculo" + ";" + "CPF" + ";" + "Curso desejado" + ";" + "E-mail" + ";"
 						+ "RG" + ";" + "Telefone" + ";" + "Nome da Faculdade" + ";" + "Nome do curso" + ";"
-						+ "Mï¿½dia geral" + "\r\n";
+						+ "Média geral" + "\r\n";
 
-				// Escrevemos o cabeÃ§alho
+				// Escrevemos o cabeçalho
 				adicionaInscrito.write(dadosInscrito);
 
 				// Escrevemos os dados
@@ -112,7 +109,7 @@ public class InscritoController {
 
 			} else {
 
-				// Caso contrÃ¡rio, se o arquivo jÃ¡ existe, inserimos os novos dados no arquivo
+				// Caso contrárioo, se o arquivo já existe, inserimos os novos dados no arquivo
 				dadosInscrito = inscrito.getInscrito().getNome() + ";" + inscrito.getInscrito().getCurriculo() + ";"
 						+ inscrito.getInscrito().getCpf() + ";" + inscrito.getInscrito().getOpcCurso() + ";"
 						+ inscrito.getInscrito().getEmail() + ";" + inscrito.getInscrito().getRg() + ";"
@@ -127,27 +124,25 @@ public class InscritoController {
 
 			}
 
-			// Caso o arquivo nÃ£o exista no diretÃ³rio
+			// Caso o arquivo não exista no diretório
 		} else {
 
 			// Criamos o arquivos
 			arquivo.createTempFile("ListaAlunosd", ".csv");
 			existe = true;
 
-			// ConfiguraÃ§Ã£o de FileWriter para atualizaÃ§Ã£o e inserÃ§Ã£o de dados no
-			// arquivo
+			// Configuração de FileWriter para atualização e inserção de dados no arquivo
 			FileWriter escreveArquivo = new FileWriter(arquivo, existe);
 			PrintWriter adicionaInscrito = new PrintWriter(escreveArquivo);
 
-			// CabeÃ§alho da planilha
 			dadosInscrito = "Nome" + ";" + "Curriculo" + ";" + "CPF" + ";" + "Curso desejado" + ";" + "E-mail" + ";"
 					+ "RG" + ";" + "Telefone" + ";" + "Nome da Faculdade" + ";" + "Nome do curso" + ";" + "Mdia geral"
 					+ "\r\n";
 
-			// Escrevemos o cabeÃ§alho
+			// Escrevemos o cabeçalho
 			adicionaInscrito.write(dadosInscrito);
 
-			// Dados que o usuÃ¡rio inseriu
+			// Dados que o usuário inseriu
 			dadosInscrito = inscrito.getInscrito().getNome() + ";" + inscrito.getInscrito().getCurriculo() + ";"
 					+ inscrito.getInscrito().getCpf() + ";" + inscrito.getInscrito().getOpcCurso() + ";"
 					+ inscrito.getInscrito().getEmail() + ";" + inscrito.getInscrito().getRg() + ";"
@@ -168,6 +163,7 @@ public class InscritoController {
 				nomeDaFaculdade = "", nomeDoCurso = "";
 		double mediaGeral = 0;
 		int tamanho = 0;
+		
 		Ordenacao ordenacao = new Ordenacao();
 		if (arq.exists() && arq.isFile()) {
 			FileInputStream fluxo = new FileInputStream(arq);
@@ -177,7 +173,7 @@ public class InscritoController {
 			String[] dadosDoCandidato;
 			linha = buffer.readLine(); // pulando a primeira linha
 			
-			//Casonï¿½o seja mais a primeira iteraï¿½ï¿½o, verificamos esta condiï¿½ï¿½o para nï¿½o ter duplicidade na variï¿½vel inicio
+			//Caso não seja mais a primeira iteração, verificamos esta condição para não ocorrer duplicidade das informações
 			if(contador > 0) {
 				inicio = null;
 			}
@@ -216,7 +212,7 @@ public class InscritoController {
 			salvarOrdenado(dados, tamanho);
 
 		} else {
-			throw new IOException("Arquivo Invï¿½lido");
+			throw new IOException("Arquivo Inválido");
 		}
 	}
 
@@ -226,23 +222,19 @@ public class InscritoController {
 		File arquivo = new File("ordenado.csv");
 		boolean existe = false;
 
-		// Veriricar se o arquivo jÃ¡ existe no diretÃ³rio
+		// Verificar se o arquivo já existe
 		if (!arquivo.exists() && arquivo.isFile()) {
 			arquivo.createTempFile("ordenado", ".csv");
 		}
 
-		// ConfiguraÃ§Ã£o de FileWriter para atualizaÃ§Ã£o e inserÃ§Ã£o de dados no
-		// arquivo
+		// Configuração de FileWriter para atualização e inserção de dados no arquivo
 		FileWriter escreveArquivo = new FileWriter(arquivo);
 		PrintWriter adicionaInscrito = new PrintWriter(escreveArquivo);
-
-		// caso a primeira linha esteja vazia, o arquivo ainda nÃ£o possui nenhum dados,
-		// entÃ£o inserimos o cabeÃ§alho
 
 		dadosInscrito = "Nome" + ";" + "Curriculo" + ";" + "CPF" + ";" + "Curso desejado" + ";" + "E-mail" + ";" + "RG"
 				+ ";" + "Telefone" + ";" + "Nome da Faculdade" + ";" + "Nome do curso" + ";" + "MÃ©dia geral" + "\r\n";
 
-		// Escrevemos o cabeÃ§alho
+		// Escrevemos o cabeçalho
 		adicionaInscrito.write(dadosInscrito);
 
 		// Escrevemos os dados
@@ -304,7 +296,7 @@ public class InscritoController {
 		No auxiliar = inicio;
 		dados = new Inscrito[tamanho];
 		
-		//Caso nï¿½o seja a primeira iteraï¿½ï¿½o, zeramos o contador para que ele possa iniciar do indice 0
+		//Caso não seja a primeira iteração, zeramos o contador para que ele possa iniciar do indice '0'
 		if (contador > 0) {
 			contador = 0;
 		}
@@ -344,7 +336,7 @@ public class InscritoController {
 				String candidato = "Nome: " + nome + "\n" + "Curriculo: " + curriculo + "\n" + "CPF: " + cpf + "\n"
 						+ "Curso: " + curso + "\n" + "Email: " + email + "\n" + "RG: " + rg + "\n" + "Telefone: "
 						+ telefone + "\n" + "Faculdade: " + nomeDaFaculdade + "\n" + "Curso: " + nomeDoCurso + "\n"
-						+ "Mï¿½dia Geral: " + mediaGeral + "\n";
+						+ "Média Geral: " + mediaGeral + "\n";
 				System.out.println(candidato);
 				System.out.println("___________________________________");
 				linha = buffer.readLine();
@@ -355,7 +347,7 @@ public class InscritoController {
 			leitor.close();
 			fluxo.close();
 		} else {
-			throw new IOException("Arquivo Inï¿½lido");
+			throw new IOException("Arquivo Inválido");
 		}
 	}
 
